@@ -15,9 +15,9 @@ class UserActivitySerializer(serializers.ModelSerializer):
 class RequestsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Requests
-        fields = ['request_name', 'description', 'category', 'condition', 'max_price', 'location', 'urgency']
+        fields = ['request_name', 'description', 'category', 'condition', 'max_price', 'location', 'urgency','created_at']
 
 class ListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Listing
-        fields = ['id','name', 'description', 'quantity', 'cost', 'image', 'category']
+        fields = ['id','name', 'description', 'quantity', 'cost', 'image', 'category','created_at']

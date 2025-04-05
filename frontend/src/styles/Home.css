@@ -64,3 +64,58 @@ div {
     height: auto;
   }
 }
+/* Tabs for switching between Listings and Requests */
+.tab {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.tab:hover {
+  background-color: #f3f4f6;
+}
+
+.tab-active {
+  background: #3b82f6;
+  color: white;
+  border: none;
+}
+
+/* History card styles */
+.history-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.history-card h3 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 1.2rem;
+}
+
+.history-card p {
+  margin: 4px 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+.summary-stats {
+  background: #f3f4f6;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.summary-stats p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #374151;
+}
