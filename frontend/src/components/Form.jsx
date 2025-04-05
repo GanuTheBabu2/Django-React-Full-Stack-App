@@ -5,11 +5,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faApple,
-  faGoogle,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons"; // ✅ Only keep Google
 
 function Form({ route, method }) {
   const [username, setUsername] = useState("");
@@ -66,29 +62,20 @@ function Form({ route, method }) {
         className="form-subtitle"
         dangerouslySetInnerHTML={{ __html: subtitle }}
       ></p>
+
+      {/* 🔻 START OF MODIFIED SECTION */}
       <div className="form-oauth">
         <button
           type="button"
-          className="form-oauth-button"
-          onClick={() => handleOAuthLogin("apple")}
-        >
-          <FontAwesomeIcon icon={faApple} />
-        </button>
-        <button
-          type="button"
-          className="form-oauth-button"
+          className="form-oauth-google"
           onClick={() => handleOAuthLogin("google")}
         >
-          <FontAwesomeIcon icon={faGoogle} />
-        </button>
-        <button
-          type="button"
-          className="form-oauth-button"
-          onClick={() => handleOAuthLogin("twitter")}
-        >
-          <FontAwesomeIcon icon={faTwitter} />
+          <FontAwesomeIcon icon={faGoogle} style={{ marginRight: "8px" }} />
+          Sign in with Google
         </button>
       </div>
+      {/* 🔺 END OF MODIFIED SECTION */}
+
       <div className="form-divider">OR</div>
       <input
         className="form-input"
