@@ -9,6 +9,7 @@ from django.db.models import Count, Q
 from datetime import timedelta
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
+import random
 
 class UserProfileView(views.APIView):
     permission_classes = [IsAuthenticated]
@@ -61,7 +62,8 @@ class CreateListingView(views.APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request):
-        data = request.data
+        data = request.data.copy()  # Make a mutable copy
+        data['carbon_footprint'] = round(random.uniform(0.1, 5.0), 2)  # Add random value
         serializer = ListingSerializer(data=data)
         if serializer.is_valid():
             serializer.save(user=request.user)

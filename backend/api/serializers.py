@@ -20,4 +20,4 @@ class RequestsSerializer(serializers.ModelSerializer):
 class ListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Listing
-        fields = ['id','name', 'description', 'quantity', 'cost', 'image', 'category','created_at']
+        fields = ['id','name', 'description', 'quantity', 'cost', 'image', 'category','created_at','carbon_footprint',]

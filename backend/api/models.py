@@ -55,6 +55,8 @@ class Listing(models.Model):
     image = models.ImageField(upload_to='listings/', null=True, blank=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
+    carbon_footprint = models.FloatField(default=0.0)  # Add this line
+
 
     def __str__(self):
         return f"{self.name} by {self.user.username}"
