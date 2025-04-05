@@ -35,6 +35,13 @@ class Requests(models.Model):
 
     def __str__(self):
         return f"{self.request_name} by {self.user.username}"
+    
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    carbon_footprint = models.FloatField(default=0.0)
+
+    def __str__(self):
+        return self.user.username
 
 class Listing(models.Model):
     CATEGORY_CHOICES = [
@@ -55,7 +62,9 @@ class Listing(models.Model):
     image = models.ImageField(upload_to='listings/', null=True, blank=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
-    carbon_footprint = models.FloatField(default=0.0)  # Add this line
+    carbon_footprint = models.FloatField(default=0.0)
+    status = models.CharField(max_length=20, choices=[('available', 'Available'), ('claimed', 'Claimed')], default='available')
+    claimed_by = models.ForeignKey(User, null=True, blank=True, related_name="claimed_listings", on_delete=models.SET_NULL) # Add this line
 
 
     def __str__(self):

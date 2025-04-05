@@ -12,4 +12,6 @@ urlpatterns = [
     path("users/", views.AllUsersView.as_view(), name="all-users"),  # New endpoint
     path("requests/view/<int:pk>/", views.RequestView.as_view(), name="request-view"),
     path("listings/view/<int:pk>/", views.ListingView.as_view(), name="listing-view"),
+    path("listings/claim/<int:pk>/", views.claim_listing, name="claim-listing"),
+
 ]

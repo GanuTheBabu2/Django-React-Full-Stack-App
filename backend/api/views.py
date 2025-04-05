@@ -11,6 +11,35 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 import random
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from .models import Listing, UserProfile
+from django.shortcuts import get_object_or_404
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def claim_listing(request, pk):
+    listing = get_object_or_404(Listing, pk=pk)
+
+    if listing.status == 'claimed':
+        return Response({'error': 'This listing has already been claimed.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Ensure profile exists, create if missing
+    profile, _ = UserProfile.objects.get_or_create(user=request.user)
+
+    # Claim the listing
+    listing.status = 'claimed'
+    listing.claimed_by = request.user
+    listing.save()
+
+    # Update carbon footprint (example logic)
+    profile.carbon_footprint += listing.carbon_footprint
+    profile.save()
+
+    return Response({'message': 'Listing claimed successfully.'})
+
+
 class UserProfileView(views.APIView):
     permission_classes = [IsAuthenticated]
 
