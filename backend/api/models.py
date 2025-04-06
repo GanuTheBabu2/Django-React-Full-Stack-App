@@ -38,10 +38,9 @@ class Requests(models.Model):
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    carbon_footprint = models.FloatField(default=0.0)
+    footprint = models.FloatField(default=0)
+    rank = models.CharField(max_length=100, default='Newbie')
 
-    def __str__(self):
-        return self.user.username
 
 class Listing(models.Model):
     CATEGORY_CHOICES = [

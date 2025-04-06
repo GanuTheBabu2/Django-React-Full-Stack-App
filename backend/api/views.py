@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework import generics, views
-from .serializers import UserSerializer, UserActivitySerializer, RequestsSerializer, ListingSerializer
+from .serializers import UserSerializer, UserActivitySerializer, RequestsSerializer, ListingSerializer , PublicUserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import UserActivity, Requests, Listing
 from django.utils import timezone
@@ -40,6 +40,14 @@ def claim_listing(request, pk):
     profile.save()
 
     return Response({'message': 'Listing claimed successfully.'})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def public_user_profile(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    profile = get_object_or_404(UserProfile, user=user)
+    data = PublicUserSerializer(profile).data
+    return Response(data)
 
 
 class UserProfileView(APIView):

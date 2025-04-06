@@ -2,12 +2,6 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import UserActivity, Requests, Listing
 from .models import UserProfile
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = ['carbon_footprint']
-
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
@@ -24,6 +18,26 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)  # 🔐 HASHING password
         user.save()
         return user
+    
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
+    
+from rest_framework import serializers
+from .models import UserProfile
+from django.contrib.auth.models import User
+
+class PublicUserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username')
+    email = serializers.EmailField(source='user.email')
+
+    class Meta:
+        model = UserProfile
+        fields = ['id', 'username', 'email', 'footprint', 'rank']
+        # remove 'rank' from here if it's not in UserProfile
+
+
 
 
 class UserActivitySerializer(serializers.ModelSerializer):

@@ -59,13 +59,13 @@ export default function SearchTabs() {
     }
     if (activeTab === "user") {
       navigate(`/user/${id}`);
+
     } else if (activeTab === "product") {
       navigate(`/listings/view/${id}`);
     } else if (activeTab === "request") {
       navigate(`/requests/view/${id}`);
     }
   };
-  
 
   return (
     <div style={styles.wrapper}>
@@ -88,7 +88,6 @@ export default function SearchTabs() {
           </button>
         ))}
       </div>
-
       <div style={styles.inputWrapper}>
         <input
           ref={inputRef}
@@ -104,9 +103,7 @@ export default function SearchTabs() {
           🔍
         </button>
       </div>
-
       {loading && <p style={styles.loadingText}>Searching...</p>}
-
       {results && (
         <div style={styles.resultsContainer}>
           {results.length === 0 ? (
@@ -136,7 +133,9 @@ export default function SearchTabs() {
                 {activeTab === "request" && (
                   <>
                     <p style={styles.resultName}>{item.request_name}</p>
-                    <p style={styles.resultEmail}>Max Price: ₹{item.max_price}</p>
+                    <p style={styles.resultEmail}>
+                      Max Price: ₹{item.max_price}
+                    </p>
                   </>
                 )}
                 <button
@@ -150,8 +149,7 @@ export default function SearchTabs() {
           )}
         </div>
       )}
-            <div style={{ height: "4rem" }} /> {/* <-- This ensures bottom gap */}
-
+      <div style={{ height: "4rem" }} /> {/* <-- This ensures bottom gap */}
       <MobileNavbar />
     </div>
   );

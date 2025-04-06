@@ -12,6 +12,10 @@ import SearchTabs from "./pages/searchpage.jsx"; // Assuming this is the correct
 import RequestDetail from "./pages/RequestDetail.jsx";
 import ListingDetail from "./pages/ListingDetail.jsx";
 import ProfilePage from "./components/ProfilePage.jsx"; // Import ProfilePage
+import UserProfile from "./pages/UserProfile";
+
+
+
 
 function Logout() {
   localStorage.clear();
@@ -89,6 +93,7 @@ function App() {
               }
             />
             <Route path="*" element={<NotFound />} />
+            <Route path="/user/:id" element={<UserProfile />} />
           </Routes>
         </div>
       </div>
