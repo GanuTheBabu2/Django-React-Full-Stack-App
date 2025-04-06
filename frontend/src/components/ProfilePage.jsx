@@ -13,6 +13,7 @@ const ProfilePage = () => {
   const [isEditingInterests, setIsEditingInterests] = useState(false);
   const [isAddingInterest, setIsAddingInterest] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const [newInterest, setNewInterest] = useState({
     category: 'Sustainable Clothing',
@@ -29,6 +30,40 @@ const ProfilePage = () => {
     { name: "Eco Warrior", minCarbon: 1, maxCarbon: 2, color: '#5fa86f' },
     { name: "Planet Saver", minCarbon: 2, maxCarbon: 5, color: '#2f4936' },
     { name: "Climate Hero", minCarbon: 5, maxCarbon: Infinity, color: '#1a2e1f' },
+  ];
+
+  // Five different sample notifications (static)
+  const sampleNotifications = [
+    {
+      category: 'Sustainable Clothing',
+      productDescription: 'Organic Cotton T-Shirt',
+      organization: 'Patagonia',
+      costPerUnit: 25.99,
+    },
+    {
+      category: 'Eco-Friendly Home Goods',
+      productDescription: 'Bamboo Cutting Board',
+      organization: 'Bambu',
+      costPerUnit: 15.50,
+    },
+    {
+      category: 'Recycled Electronics',
+      productDescription: 'Refurbished Laptop',
+      organization: 'Dell',
+      costPerUnit: 499.99,
+    },
+    {
+      category: 'Sustainable Packaging',
+      productDescription: 'Compostable Mailers',
+      organization: 'EcoEnclose',
+      costPerUnit: 0.75,
+    },
+    {
+      category: 'Upcycled Furniture',
+      productDescription: 'Reclaimed Wood Coffee Table',
+      organization: 'West Elm',
+      costPerUnit: 299.00,
+    },
   ];
 
   useEffect(() => {
@@ -149,6 +184,25 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
+      <div className="notification-container">
+        <div className="notification-wrapper" onClick={() => setShowNotifications(!showNotifications)}>
+          <Bell className="notification-icon" />
+          <span className="notification-badge">5+</span>
+        </div>
+        {showNotifications && (
+          <div className="notification-dropdown">
+            <h3 className="notification-title">Notifications</h3>
+            {sampleNotifications.map((notification, index) => (
+              <div key={index} className="notification-item">
+                <p><strong>{notification.category}</strong></p>
+                <p>{notification.productDescription}</p>
+                {notification.organization && <p>From: {notification.organization}</p>}
+                {notification.costPerUnit && <p>Max Price: ₹{notification.costPerUnit.toFixed(2)}</p>}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
       <main className="profile-content">
         <div className="profile-header">
           <div className="profile-photo-container">

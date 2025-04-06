@@ -6,11 +6,87 @@
   min-height: 100vh;
   background-color: #f8fbf9;
   padding: 20px;
+  position: relative;
 }
 
 .profile-content {
   width: 100%;
   max-width: 800px;
+}
+
+.notification-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.notification-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.notification-icon {
+  width: 32px;
+  height: 32px;
+  color: #5fa86f;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #ff4d4d;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #d3e7d6;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 10;
+  text-align: center; /* Center the entire dropdown content */
+}
+
+.notification-title {
+  font-size: 16px;
+  color: #2f4936;
+  margin-bottom: 10px;
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item p {
+  font-size: 14px;
+  color: #4f6d58;
+  margin: 5px 0;
+}
+
+.no-notifications {
+  font-size: 14px;
+  color: #889c91;
+  text-align: center;
+  padding: 10px;
 }
 
 .profile-header {
