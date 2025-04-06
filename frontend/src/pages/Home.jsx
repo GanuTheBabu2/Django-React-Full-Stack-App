@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
+import { FaLeaf } from "react-icons/fa";
 import api from "../api";
 import Chart from "chart.js/auto";
 import "../styles/Home.css";
@@ -20,15 +22,13 @@ function Home() {
       .then((res) => setUser(res.data))
       .catch((err) => alert(err));
 
-    // Fetch listing/request stats (grouped by month)
+    // Fetch stats
     api
-      .get("/api/user/stats/?period=month") // you might need to adjust this endpoint
-      .then((res) => {
-        setStats(res.data);
-      })
+      .get("/api/user/stats/?period=month")
+      .then((res) => setStats(res.data))
       .catch((err) => alert(err));
 
-    // Fetch user's listings and requests
+    // Fetch listings
     api
       .get("/api/listings/")
       .then((res) => {
@@ -39,6 +39,7 @@ function Home() {
       })
       .catch((err) => console.error("Listings fetch error:", err));
 
+    // Fetch requests
     api
       .get("/api/requests/")
       .then((res) => {
@@ -50,16 +51,13 @@ function Home() {
       .catch((err) => console.error("Requests fetch error:", err));
   }, []);
 
-  // Render Chart
+  // Chart setup
   useEffect(() => {
     if (!stats || stats.length === 0 || !canvasRef.current) return;
 
     const ctx = canvasRef.current.getContext("2d");
-
-    // Destroy previous chart
     if (chartRef.current) chartRef.current.destroy();
 
-    // Extract months
     const labels = stats.map((s) => s.month);
 
     chartRef.current = new Chart(ctx, {
@@ -70,16 +68,16 @@ function Home() {
           {
             label: "Listings",
             data: stats.map((s) => s.listings),
-            borderColor: "#3b82f6",
-            backgroundColor: "#3b82f6",
+            borderColor: "#388e3c",
+            backgroundColor: "#c8e6c9",
             fill: false,
             tension: 0.3,
           },
           {
             label: "Requests",
             data: stats.map((s) => s.requests),
-            borderColor: "#f97316",
-            backgroundColor: "#f97316",
+            borderColor: "#81c784",
+            backgroundColor: "#e8f5e9",
             fill: false,
             tension: 0.3,
           },
@@ -99,8 +97,20 @@ function Home() {
 
   return (
     <div className="home-container">
+      <Helmet>
+        <title>🌱 Eco Dashboard</title>
+        <meta name="theme-color" content="#81c784" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
+
       <div className="home-content">
-        <h1>Hello, {user ? user.username : "Guest"}!</h1>
+        <h1>
+          <FaLeaf style={{ color: "#2e7d32", marginRight: "10px" }} />
+          Hello, {user ? user.username : "Guest"}!
+        </h1>
 
         <h2>Activity Summary</h2>
         <div className="summary-stats">
@@ -123,6 +133,7 @@ function Home() {
               : "N/A"}
           </p>
         </div>
+
 
         <div style={{ marginTop: "30px" }}>
           <h2>History</h2>
