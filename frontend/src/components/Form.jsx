@@ -64,16 +64,7 @@ function Form({ route, method }) {
       ></p>
 
       {/* 🔻 START OF MODIFIED SECTION */}
-      <div className="form-oauth">
-        <button
-          type="button"
-          className="form-oauth-google"
-          onClick={() => handleOAuthLogin("google")}
-        >
-          <FontAwesomeIcon icon={faGoogle} style={{ marginRight: "8px" }} />
-          Sign in with Google
-        </button>
-      </div>
+      
       {/* 🔺 END OF MODIFIED SECTION */}
 
       <div className="form-divider">OR</div>

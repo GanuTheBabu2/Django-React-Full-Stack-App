@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: #f8fbf9;
+  background: linear-gradient(to right, #ffffff, #78ea93);
   padding: 20px;
   position: relative;
 }

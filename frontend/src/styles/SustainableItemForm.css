@@ -12,11 +12,13 @@
   max-width: 80%; /* Reduced max-width to 80% of the screen */
   margin: 20px auto;
   padding: 20px; /* Reduced padding */
-  background-color: #f9f9f9;
+  background: linear-gradient(to right, #ffffff, #94e6a7);
+  /* white to green gradient */
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   flex: 1; /* Allows it to grow but not exceed content */
 }
+
 
 /* Adjust form container for smaller screens */
 @media (max-width: 576px) {

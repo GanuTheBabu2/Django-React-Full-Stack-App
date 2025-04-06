@@ -4,7 +4,7 @@
   max-width: 80%;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background: linear-gradient(to right, #ffffff, #94e6a7);
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   font-family: 'Arial', sans-serif;
