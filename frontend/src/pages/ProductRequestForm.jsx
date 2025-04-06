@@ -3,7 +3,7 @@ import { Send } from 'lucide-react';
 import MobileNavbar from "../components/MobileNavbar.jsx";
 import api from "../api";
 import '../styles/ProductRequestForm.css';
-import LeavesBackground from '../components/LeavesBackground.jsx';
+import LeavesBackground from '../components/leavesbackground.jsx';
 
 const ProductRequestForm = () => {
   const initialFormState = {
