@@ -1,242 +1,234 @@
 /* Using Roboto font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #fff, #ffe6e6);
-    width: 90%; /* Change from fixed width to percentage */
-    max-width: 500px; /* Slightly wider max width */
-    min-width: 300px; /* Prevents it from shrinking too much */
-    border: 1px solid #ddd;
-    position: relative;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #fff, #ffe6e6);
+  width: 90%;
+  max-width: 500px;
+  min-width: 300px;
+  border: 1px solid #ddd;
+  position: relative;
+  box-sizing: border-box;
 }
-
 
 /* Mobile responsiveness */
 @media (max-width: 480px) {
-    .form-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: auto;
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        background: linear-gradient(to right, #fff, #ffe6e6);
-        width: 90%; /* Change from fixed width to percentage */
-        max-width: 500px; /* Slightly wider max width */
-        min-width: 300px; /* Prevents it from shrinking too much */
-        border: 1px solid #ddd;
-        position: relative;
-        box-sizing: border-box;
-    }
-    
+  .form-container {
+    width: 90%;
+    padding: 20px; /* Reduced padding for smaller screens */
+  }
 
-    .form-logo {
-        font-size: 30px;
-    }
+  .form-logo {
+    font-size: 30px;
+  }
 
-    .form-subtitle {
-        font-size: 12px;
-    }
+  .form-subtitle {
+    font-size: 12px;
+  }
 
-    .form-oauth {
-        max-width: 100%;
-    }
+  .form-oauth {
+    max-width: 100%;
+  }
 
-    .form-oauth-button {
-        width: 80px;
-        font-size: 20px;
-    }
+  .form-oauth-google {
+    font-size: 14px; /* Slightly smaller text */
+    padding: 8px; /* Adjusted padding */
+  }
 
-    .form-input,
-    .form-button {
-        max-width: 100%;
-    }
+  .form-input,
+  .form-button {
+    max-width: 100%;
+  }
 
-    .form-options {
-        max-width: 100%;
-    }
+  .form-options {
+    max-width: 100%;
+  }
 
-    .form-divider {
-        max-width: 100%;
-    }
+  .form-divider {
+    max-width: 100%;
+  }
 
-    .form-footer {
-        font-size: 12px;
-    }
+  .form-footer {
+    font-size: 12px;
+  }
 }
 
 .form-logo {
-    margin-bottom: 20px;
-    font-size: 40px;
-    color: #ff4d4d;
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: #ff4d4d;
 }
 
 .form-subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 20px;
-    font-size: 14px;
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
 .form-oauth {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center; /* Center the Google button */
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
 }
 
-.form-oauth-button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #fff;
-    cursor: pointer;
-    width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    transition: border-color 0.3s ease;
+.form-oauth-google {
+  padding: 10px 20px;
+  border: 1px solid #dadce0; /* Google’s light gray border */
+  border-radius: 6px;
+  background: #fff; /* White background per Google branding */
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px; /* Slightly narrower than inputs */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif; /* Match Google’s font */
+  color: #3c4043; /* Google’s dark gray text */
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.form-oauth-button:hover {
-    border-color: #3b82f6;
+.form-oauth-google:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+  background-color: #f8f9fa; /* Light gray hover state */
+}
+
+.form-oauth-google:active {
+  background-color: #e8eaed; /* Slightly darker when clicked */
 }
 
 .form-divider {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-    width: 100%;
-    max-width: 350px;
-    text-align: center;
-    color: #888;
-    font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
 }
 
 .form-divider::before,
 .form-divider::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #ddd;
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ddd;
 }
 
 .form-input {
-    padding: 12px;
-    margin: 12px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
-    width: 100%;
-    max-width: 350px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 100%;
+  max-width: 350px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-input:focus {
-    border-color: #3b82f6;
-    outline: none;
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
 }
 
 .form-input::placeholder {
-    color: #aaa;
+  color: #aaa;
 }
 
 .form-options {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 350px;
-    margin: 10px 0;
-    font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 350px;
+  margin: 10px 0;
+  font-size: 14px;
 }
 
 .form-options label {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .form-options input[type="checkbox"] {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .form-link {
-    color: #3b82f6;
-    text-decoration: none;
+  color: #3b82f6;
+  text-decoration: none;
 }
 
 .form-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .form-button {
-    padding: 12px 20px;
-    margin-top: 20px;
-    background-color: #000;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    width: 100%;
-    max-width: 350px;
+  padding: 12px 20px;
+  margin-top: 20px;
+  background-color: #000;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  width: 100%;
+  max-width: 350px;
 }
 
 .form-button:hover {
-    background-color: #333;
+  background-color: #333;
 }
 
 .form-button:active {
-    background-color: #666;
-    transform: translateY(1px);
+  background-color: #666;
+  transform: translateY(1px);
 }
 
 .form-footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
 }
 
 .form-footer a {
-    color: #3b82f6;
-    text-decoration: none;
+  color: #3b82f6;
+  text-decoration: none;
 }
 
 .form-footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Loading spinner */
 .loading-indicator {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loading-indicator svg {
-    width: 50px;
-    height: 50px;
-    animation: rotate 1s linear infinite;
+  width: 50px;
+  height: 50px;
+  animation: rotate 1s linear infinite;
 }
 
 @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

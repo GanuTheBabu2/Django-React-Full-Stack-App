@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { User, Edit2, Save, PlusCircle, Camera, X, Bell, BellOff } from 'lucide-react';
 import '../styles/ProfilePage.css';
-import api from "../api"; // Your API utility
+import api from "../api";
 import MobileNavbar from "../components/MobileNavbar.jsx";
 
 const ProfilePage = () => {
@@ -22,6 +22,15 @@ const ProfilePage = () => {
     notificationsEnabled: true,
   });
 
+  // Badge tiers (in tons of CO2 saved)
+  const badges = [
+    { name: "Eco Newbie", minCarbon: 0, maxCarbon: 0.5, color: '#d3e7d6' },
+    { name: "Green Starter", minCarbon: 0.5, maxCarbon: 1, color: '#b7d2bd' },
+    { name: "Eco Warrior", minCarbon: 1, maxCarbon: 2, color: '#5fa86f' },
+    { name: "Planet Saver", minCarbon: 2, maxCarbon: 5, color: '#2f4936' },
+    { name: "Climate Hero", minCarbon: 5, maxCarbon: Infinity, color: '#1a2e1f' },
+  ];
+
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -32,7 +41,7 @@ const ProfilePage = () => {
         console.error('Failed to fetch user profile:', error.response?.data || error.message);
         if (error.response?.status === 401) {
           localStorage.removeItem('access_token');
-          window.location.href = '/login'; // Redirect to login on auth failure
+          window.location.href = '/login';
         }
       } finally {
         setLoading(false);
@@ -117,6 +126,17 @@ const ProfilePage = () => {
     }
   };
 
+  const getBadgeInfo = (carbonFootprint) => {
+    const currentBadge = badges.find(badge => 
+      carbonFootprint >= badge.minCarbon && carbonFootprint < badge.maxCarbon
+    ) || badges[0];
+    const nextBadge = badges[badges.indexOf(currentBadge) + 1] || currentBadge;
+    const progress = nextBadge.maxCarbon === Infinity 
+      ? 100 
+      : ((carbonFootprint - currentBadge.minCarbon) / (nextBadge.minCarbon - currentBadge.minCarbon)) * 100;
+    return { currentBadge, nextBadge, progress: Math.min(progress, 100) };
+  };
+
   if (loading) {
     return <div className="profile-container">Loading...</div>;
   }
@@ -124,6 +144,8 @@ const ProfilePage = () => {
   if (!user) {
     return <div className="profile-container">Failed to load user profile</div>;
   }
+
+  const { currentBadge, nextBadge, progress } = getBadgeInfo(user.carbon_footprint || 0);
 
   return (
     <div className="profile-container">
@@ -160,6 +182,29 @@ const ProfilePage = () => {
           <div className="stat-item">
             <span className="stat-number">{user.productsSold || 0}</span>
             <span className="stat-label">Products Sold</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-number">{(user.carbon_footprint || 0).toFixed(2)}</span>
+            <span className="stat-label">Tons CO2 Saved</span>
+          </div>
+        </div>
+
+        <div className="badge-section">
+          <h2 className="badge-title">Your Eco Badge</h2>
+          <div className="badge-container">
+            <div 
+              className="circular-progress" 
+              style={{ 
+                background: `conic-gradient(${currentBadge.color} ${progress}%, #e0e0e0 0)` 
+              }}
+            >
+              <span className="badge-name">{currentBadge.name}</span>
+            </div>
+            <p className="badge-progress">
+              {progress < 100 
+                ? `${(nextBadge.minCarbon - user.carbon_footprint).toFixed(2)} tons to ${nextBadge.name}`
+                : 'Max Rank Achieved!'}
+            </p>
           </div>
         </div>
 
@@ -342,13 +387,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-
-const greenInterestOptions = [
-  'Sustainable Clothing',
-  'Eco-Friendly Home Goods',
-  'Recycled Electronics',
-  'Sustainable Packaging',
-  'Upcycled Furniture',
-  'Green Accessories',
-  'Other',
-];

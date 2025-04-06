@@ -11,7 +11,7 @@ const ListingDetail = () => {
   const handleClaim = async () => {
   try {
     const res = await api.post(`/api/listings/claim/${id}/`);
-    alert("Successfully claimed! Your new carbon footprint: " + res.data.new_footprint);
+    alert("Successfully claimed! Carbon FootPrint Increaded ");
     window.location.reload(); // Refresh to update listing status
   } catch (err) {
     alert(err.response?.data?.detail || "Error claiming listing.");

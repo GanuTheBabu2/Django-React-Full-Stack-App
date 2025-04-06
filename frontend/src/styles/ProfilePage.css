@@ -1,531 +1,376 @@
-/* ProfilePage.css */
-
-/* Container Styles */
+/* src/styles/ProfilePage.css */
 .profile-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
-    padding-bottom: 70px; /* Space for mobile nav */
-  }
-  
-  .profile-content {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 24px;
-  }
-  
-  /* Profile Header Styles */
-  .profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-  
-  .profile-photo-container {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-  }
-  
-  .profile-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid #3cbc8d;
-  }
-  
-  .profile-photo-placeholder {
-    width: 100%;
-    height: 100%;
-    color: #aaa;
-    background-color: #f0f0f0;
-    border-radius: 50%;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .camera-overlay {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #3cbc8d;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 2px solid white;
-  }
-  
-  .camera-icon {
-    color: white;
-    width: 18px;
-    height: 18px;
-  }
-  
-  .photo-upload-input {
-    display: none;
-  }
-  
-  .photo-upload-label {
-    cursor: pointer;
-    display: block;
-  }
-  
-  .profile-name {
-    font-size: 24px;
-    margin: 0;
-    color: #333;
-  }
-  
-  /* Stats Styles */
-  .profile-stats {
-    display: flex;
-    justify-content: space-around;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 24px;
-  }
-  
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .stat-number {
-    font-size: 24px;
-    font-weight: bold;
-    color: #3cbc8d;
-  }
-  
-  .stat-label {
-    font-size: 14px;
-    color: #666;
-    margin-top: 4px;
-  }
-  
-  /* Green Interests Section */
-  .green-interests-section {
-    background-color: #f9fcfa;
-    border-radius: 8px;
-    padding: 20px;
-    border: 1px solid #e6f3ed;
-  }
-  
-  .interests-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  
-  .interests-title {
-    margin: 0;
-    font-size: 20px;
-    color: #2a9d74;
-  }
-  
-  .edit-button {
-    background: none;
-    border: none;
-    color: #3cbc8d;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .edit-button:hover {
-    background-color: #e6f3ed;
-  }
-  
-  .edit-icon {
-    width: 20px;
-    height: 20px;
-  }
-  
-  /* Add Interest Button */
-  .add-interest-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 12px;
-    background-color: #e6f3ed;
-    color: #2a9d74;
-    border: 1px dashed #3cbc8d;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 16px;
-    transition: background-color 0.2s;
-  }
-  
-  .add-interest-button:hover {
-    background-color: #d1e9df;
-  }
-  
-  .add-icon {
-    margin-right: 8px;
-    width: 18px;
-    height: 18px;
-  }
-  
-  /* Add Interest Form */
-  .add-interest-form {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  .add-interest-form h3 {
-    margin-top: 0;
-    color: #2a9d74;
-    font-size: 18px;
-    margin-bottom: 16px;
-  }
-  
-  .form-group {
-    margin-bottom: 16px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 6px;
-    color: #555;
-    font-weight: 500;
-  }
-  
-  .form-input,
-  .form-select,
-  .form-textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .form-input:focus,
-  .form-select:focus,
-  .form-textarea:focus {
-    outline: none;
-    border-color: #3cbc8d;
-    box-shadow: 0 0 0 2px rgba(60, 188, 141, 0.2);
-  }
-  
-  .form-textarea {
-    min-height: 80px;
-    resize: vertical;
-  }
-  
-  /* Form Actions */
-  .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 24px;
-  }
-  
-  .cancel-button,
-  .save-button {
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .cancel-button {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    color: #666;
-  }
-  
-  .cancel-button:hover {
-    background-color: #e5e5e5;
-  }
-  
-  .save-button {
-    background-color: #3cbc8d;
-    border: 1px solid #2a9d74;
-    color: white;
-  }
-  
-  .save-button:hover {
-    background-color: #35a67c;
-  }
-  
-  /* Interests List */
-  .interests-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  
-  @media (min-width: 600px) {
-    .interests-list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  .interest-card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    border: 1px solid #e6f3ed;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .interest-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-  }
-  
-  .interest-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f0f9f6;
-    padding: 12px 16px;
-    border-bottom: 1px solid #e6f3ed;
-  }
-  
-  .interest-category {
-    margin: 0;
-    font-size: 16px;
-    color: #2a9d74;
-  }
-  
-  .remove-interest-button {
-    background: none;
-    border: none;
-    color: #ff6b6b;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .remove-interest-button:hover {
-    background-color: #ffeded;
-  }
-  
-  .remove-icon {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .interest-details {
-    padding: 16px;
-  }
-  
-  .interest-details p {
-    margin: 8px 0;
-    color: #555;
-    line-height: 1.4;
-  }
-  
-  .no-interests {
-    text-align: center;
-    padding: 24px;
-    color: #888;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    border: 1px dashed #ddd;
-  }
-  
-  /* Mobile Navigation */
-  .mobile-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-  }
-  
-  .mobile-nav-list {
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .mobile-nav-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 0;
-    color: #777;
-    text-decoration: none;
-    width: 100%;
-    font-size: 12px;
-  }
-  
-  .mobile-nav-link:hover,
-  .mobile-nav-link.active {
-    color: #3cbc8d;
-  }
-  
-  .mobile-nav-icon {
-    margin-bottom: 4px;
-    width: 20px;
-    height: 20px;
-  }
-  
-  /* Notification settings badge */
-  .notification-badge {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    background-color: #ff6b6b;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Bell icon in interest cards to indicate notifications */
-  .notification-bell {
-    color: #3cbc8d;
-    margin-right: 6px;
-  }
-  
-  /* Notification preferences */
-  .notification-preferences {
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px dashed #e6f3ed;
-  }
-  
-  .notification-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .notification-toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-  }
-  
-  .notification-toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .notification-toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 20px;
-  }
-  
-  .notification-toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .notification-toggle-slider {
-    background-color: #3cbc8d;
-  }
-  
-  input:checked + .notification-toggle-slider:before {
-    transform: translateX(20px);
-  }
-  
-  /* Add these styles to your ProfilePage.css file */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8fbf9;
+  padding: 20px;
+}
 
-/* Mobile-specific styles for form elements */
-@media screen and (max-width: 768px) {
-    .form-input,
-    .form-select,
-    .form-textarea {
-      font-size: 16px; /* Prevent auto-zoom on iOS */
-      padding: 8px;
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-    }
-    
-    .form-textarea {
-      min-height: 80px; /* Reduced height for textareas */
-      max-height: 120px;
-    }
-    
-    .form-group {
-      margin-bottom: 12px; /* Reduce spacing between form groups */
-    }
-    
-    /* Adjust the add interest form container */
-    .add-interest-form {
-      padding: 12px;
-    }
-    
-    /* Make sure buttons are properly sized on mobile */
-    .form-actions button {
-      padding: 8px 16px;
-      font-size: 14px;
-    }
-    
-    /* Ensure the input controls don't overflow their container */
-    .profile-container {
-      padding: 16px;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-    
-    /* Make sure the interest cards look good on small screens */
-    .interest-card {
-      padding: 12px;
-    }
-    
-    /* Adjust notification toggle size for better touch targets */
-    .notification-toggle-switch {
-      width: 48px;
-      height: 24px;
-    }
-    
-    .notification-toggle-slider:before {
-      height: 18px;
-      width: 18px;
-    }
-  }
+.profile-content {
+  width: 100%;
+  max-width: 800px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 10px;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #666;
+}
+
+.camera-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-icon {
+  color: #fff;
+  width: 20px;
+  height: 20px;
+}
+
+.photo-upload-input {
+  display: none;
+}
+
+.profile-name {
+  font-size: 24px;
+  color: #2f4936;
+  margin: 10px 0 5px;
+}
+
+.profile-email {
+  font-size: 16px;
+  color: #4f6d58;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2f4936;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #4f6d58;
+}
+
+.badge-section {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.badge-title {
+  font-size: 20px;
+  color: #2f4936;
+  margin-bottom: 15px;
+}
+
+.badge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.badge-name {
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2f4936;
+  z-index: 1;
+  text-align: center;
+  padding: 5px;
+}
+
+.badge-progress {
+  font-size: 14px;
+  color: #4f6d58;
+  margin-top: 10px;
+}
+
+.green-interests-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+}
+
+.interests-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.interests-title {
+  font-size: 20px;
+  color: #2f4936;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.edit-icon {
+  width: 20px;
+  height: 20px;
+  color: #5fa86f;
+}
+
+.add-interest-button {
+  display: flex;
+  align-items: center;
+  background: #5fa86f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.add-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.add-interest-form {
+  background: #f1f8f3;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #2f4936;
+  margin-bottom: 5px;
+}
+
+.form-select,
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b7d2bd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.notification-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.notification-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.notification-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.notification-toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .notification-toggle-slider {
+  background-color: #5fa86f;
+}
+
+input:checked + .notification-toggle-slider:before {
+  transform: translateX(20px);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-button,
+.save-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background: #e0e0e0;
+  color: #666;
+}
+
+.save-button {
+  background: #5fa86f;
+  color: #fff;
+}
+
+.interests-list {
+  margin-top: 15px;
+}
+
+.interest-card {
+  background: #f1f8f3;
+  border: 1px solid #d3e7d6;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.interest-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.interest-category {
+  font-size: 16px;
+  color: #2f4936;
+  display: flex;
+  align-items: center;
+}
+
+.notification-bell {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.remove-interest-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.remove-icon {
+  width: 16px;
+  height: 16px;
+  color: #ff4d4d;
+}
+
+.interest-details p {
+  font-size: 14px;
+  color: #4f6d58;
+  margin: 5px 0;
+}
+
+.notification-preferences {
+  margin-top: 10px;
+}
+
+.no-interests {
+  text-align: center;
+  color: #889c91;
+}
+
+.no-interests p {
+  margin: 5px 0;
+}

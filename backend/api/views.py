@@ -10,6 +10,8 @@ from datetime import timedelta
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 import random
+from .serializers import  UserProfileSerializer
+from rest_framework.views import APIView
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -40,13 +42,24 @@ def claim_listing(request, pk):
     return Response({'message': 'Listing claimed successfully.'})
 
 
-class UserProfileView(views.APIView):
+class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         user = request.user
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+        try:
+            profile = UserProfile.objects.get(user=user)
+            user_data = UserSerializer(user).data
+            profile_data = UserProfileSerializer(profile).data
+            # Combine user and profile data
+            combined_data = {**user_data, **profile_data}
+            return Response(combined_data)
+        except UserProfile.DoesNotExist:
+            # Create profile if it doesn't exist
+            profile = UserProfile.objects.create(user=user)
+            user_data = UserSerializer(user).data
+            profile_data = UserProfileSerializer(profile).data
+            return Response({**user_data, **profile_data})
 
 class UserStatsView(views.APIView):
     permission_classes = [IsAuthenticated]
