@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom"; // ✅ Added Link
 import api from "../api";
 import MobileNavbar from "../components/MobileNavbar.jsx";
 
@@ -8,20 +8,20 @@ const ListingDetail = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
   const handleClaim = async () => {
-  try {
-    const res = await api.post(`/api/listings/claim/${id}/`);
-    alert("Successfully claimed! Carbon FootPrint Increaded ");
-    window.location.reload(); // Refresh to update listing status
-  } catch (err) {
-    alert(err.response?.data?.detail || "Error claiming listing.");
-  }
-};
-
-
+    try {
+      const res = await api.post(`/api/listings/claim/${id}/`);
+      alert("Successfully claimed! Carbon FootPrint Increased");
+      window.location.reload();
+    } catch (err) {
+      alert(err.response?.data?.detail || "Error claiming listing.");
+    }
+  };
 
   useEffect(() => {
-    api.get(`/api/listings/view/${id}/`)
+    api
+      .get(`/api/listings/view/${id}/`)
       .then((response) => {
         setListing(response.data);
         setLoading(false);
@@ -49,6 +49,17 @@ const ListingDetail = () => {
         />
       )}
       <p>Category: {listing.category}</p>
+
+      {/* 🧑 Show seller info and link to profile */}
+      {listing.owner && (
+        <p>
+          Sold by:{" "}
+          <Link to={`/user/${listing.owner.id}`} style={{ color: "#3b82f6", textDecoration: "underline" }}>
+            {listing.owner.username}
+          </Link>
+        </p>
+      )}
+
       {listing.status === "available" ? (
         <button
           onClick={handleClaim}
@@ -69,11 +80,10 @@ const ListingDetail = () => {
           This item has already been claimed.
         </p>
       )}
-  
+
       <MobileNavbar />
     </div>
   );
-  
 };
 
 export default ListingDetail;

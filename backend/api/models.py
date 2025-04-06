@@ -74,6 +74,7 @@ class Listing(models.Model):
     carbon_footprint = models.FloatField(default=0.0)
     status = models.CharField(max_length=20, choices=[('available', 'Available'), ('claimed', 'Claimed')], default='available')
     claimed_by = models.ForeignKey(User, null=True, blank=True, related_name="claimed_listings", on_delete=models.SET_NULL) # Add this line
+    owner = models.ForeignKey(User, related_name='listings', on_delete=models.CASCADE)
 
 
     def __str__(self):

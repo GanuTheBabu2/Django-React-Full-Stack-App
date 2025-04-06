@@ -119,9 +119,10 @@ class CreateListingView(views.APIView):
         data['carbon_footprint'] = round(random.uniform(0.1, 5.0), 2)  # Add random value
         serializer = ListingSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(user=request.user)
+            serializer.save(owner=request.user)  # ✅ Set owner correctly
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+
 
 class AllRequestsView(views.APIView):
     permission_classes = [IsAuthenticated]

@@ -60,8 +60,14 @@ class RequestsSerializer(serializers.ModelSerializer):
         model = Requests
         fields = ['id','request_name', 'description', 'category', 'condition', 'max_price', 'location', 'urgency','created_at']
 class ListingSerializer(serializers.ModelSerializer):
-    claimed_by = serializers.StringRelatedField(read_only=True)  # Optional: show username
+    owner = serializers.SerializerMethodField()
 
     class Meta:
         model = Listing
-        fields = ['id', 'name', 'description', 'quantity', 'cost', 'image', 'category', 'created_at', 'carbon_footprint', 'status', 'claimed_by']
+        fields = '__all__'
+
+    def get_owner(self, obj):
+        return {
+            "id": obj.owner.id,
+            "username": obj.owner.username,
+        }

@@ -435,6 +435,8 @@ const ProfilePage = () => {
           )}
         </div>
       </main>
+      <div style={{ paddingBottom: "80px" }}></div>
+
       <MobileNavbar />
     </div>
   );
