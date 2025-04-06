@@ -150,6 +150,8 @@ export default function SearchTabs() {
           )}
         </div>
       )}
+            <div style={{ height: "4rem" }} /> {/* <-- This ensures bottom gap */}
+
       <MobileNavbar />
     </div>
   );

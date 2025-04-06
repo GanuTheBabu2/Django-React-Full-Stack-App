@@ -34,7 +34,7 @@ class UserActivitySerializer(serializers.ModelSerializer):
 class RequestsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Requests
-        fields = ['request_name', 'description', 'category', 'condition', 'max_price', 'location', 'urgency','created_at']
+        fields = ['id','request_name', 'description', 'category', 'condition', 'max_price', 'location', 'urgency','created_at']
 class ListingSerializer(serializers.ModelSerializer):
     claimed_by = serializers.StringRelatedField(read_only=True)  # Optional: show username
 

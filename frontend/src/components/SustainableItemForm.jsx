@@ -3,6 +3,7 @@ import { PlusCircle, Upload } from 'lucide-react';
 import '../styles/SustainableItemForm.css';
 import MobileNavbar from "../components/MobileNavbar.jsx";
 import api from "../api"; // Assuming this is your API utility
+import LeavesBackground from '../components/LeavesBackground';
 
 const SustainableItemForm = () => {
   const [formData, setFormData] = useState({
@@ -102,160 +103,160 @@ const SustainableItemForm = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="form">
-          <div className="form-group">
-            <label htmlFor="name" className="form-label">
-              Item Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-              className="form-input"
-              placeholder="Recycled Paper Notebook"
-            />
-          </div>
+        <div className="form-wrapper">
+          <h2 className="form-title">Create Product Request</h2>
+          {submitSuccess && <div className="success-message">🎉 Request submitted successfully!</div>}
 
-          <div className="form-group">
-            <label htmlFor="category" className="form-label">
-              Product Category
-            </label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleInputChange}
-              required
-              className="form-input"
-            >
-              {categories.map((cat) => (
-                <option key={cat.value} value={cat.value}>
-                  {cat.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="description" className="form-label">
-              Description
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              required
-              rows={4}
-              className="form-input"
-              placeholder="Describe your sustainable item, including materials used, origin, and environmental impact..."
-            ></textarea>
-          </div>
-
-          <div className="form-row">
+          <form onSubmit={handleSubmit} className="form">
             <div className="form-group">
-              <label htmlFor="quantity" className="form-label">
-                Quantity Available
+              <label htmlFor="name" className="form-label">
+                Item Name
               </label>
               <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                value={formData.quantity}
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 required
-                min="1"
                 className="form-input"
+                placeholder="Recycled Paper Notebook"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="cost" className="form-label">
-                Cost (INR)
+              <label htmlFor="category" className="form-label">
+                Product Category
               </label>
-              <input
-                type="number"
-                id="cost"
-                name="cost"
-                value={formData.cost}
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
                 onChange={handleInputChange}
                 required
-                min="0"
-                step="0.01"
                 className="form-input"
-                placeholder="19.99"
-              />
+              >
+                {categories.map((cat) => (
+                  <option key={cat.value} value={cat.value}>
+                    {cat.label}
+                  </option>
+                ))}
+              </select>
             </div>
-          </div>
 
-          <div className="form-group">
-            <label className="form-label">
-              Item Image
-            </label>
-            <div className="image-upload-container">
-              {imagePreview ? (
-                <div className="image-preview-container">
-                  <img 
-                    src={imagePreview} 
-                    alt="Preview" 
-                    className="image-preview"
-                  />
-                  <label 
-                    htmlFor="image-upload" 
-                    className="change-image-btn"
-                  >
-                    <span>Change image</span>
-                    <input 
-                      id="image-upload" 
-                      name="image" 
-                      type="file" 
-                      accept="image/*" 
-                      onChange={handleImageChange} 
-                      className="hidden-input" 
+            <div className="form-group">
+              <label htmlFor="description" className="form-label">
+                Description
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+                rows={4}
+                className="form-input"
+                placeholder="Describe your sustainable item, including materials used, origin, and environmental impact..."
+              ></textarea>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="quantity" className="form-label">
+                  Quantity Available
+                </label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  value={formData.quantity}
+                  onChange={handleInputChange}
+                  required
+                  min="1"
+                  className="form-input"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="cost" className="form-label">
+                  Cost (INR)
+                </label>
+                <input
+                  type="number"
+                  id="cost"
+                  name="cost"
+                  value={formData.cost}
+                  onChange={handleInputChange}
+                  required
+                  min="0"
+                  step="0.01"
+                  className="form-input"
+                  placeholder="19.99"
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">
+                Item Image
+              </label>
+              <div className="image-upload-container">
+                {imagePreview ? (
+                  <div className="image-preview-container">
+                    <img 
+                      src={imagePreview} 
+                      alt="Preview" 
+                      className="image-preview"
                     />
-                  </label>
-                </div>
-              ) : (
-                <div className="upload-placeholder">
-                  <Upload className="upload-icon" />
-                  <div className="upload-text">
-                    <label
-                      htmlFor="image-upload"
-                      className="upload-btn"
+                    <label 
+                      htmlFor="image-upload" 
+                      className="change-image-btn"
                     >
-                      <span>Upload an image</span>
-                      <input
-                        id="image-upload"
-                        name="image"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="hidden-input"
+                      <span>Change image</span>
+                      <input 
+                        id="image-upload" 
+                        name="image" 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleImageChange} 
+                        className="hidden-input" 
                       />
                     </label>
-                    <p className="upload-or">or drag and drop</p>
                   </div>
-                  <p className="upload-info">PNG, JPG, GIF up to 10MB</p>
-                </div>
-              )}
+                ) : (
+                  <label htmlFor="image-upload" className="upload-placeholder">
+                    <input
+                      id="image-upload"
+                      name="image"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="hidden-input"
+                    />
+                    <Upload className="upload-icon" />
+                    <div className="upload-text">
+                      <span className="upload-btn-text">Upload an image</span>
+                      <p className="upload-or">or drag and drop</p>
+                    </div>
+                    <p className="upload-info">PNG, JPG, GIF up to 10MB</p>
+                  </label>
+                )}
+              </div>
             </div>
-          </div>
 
-          <div className="button-container">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={isSubmitting ? "submit-button disabled" : "submit-button"}
-            >
-              <PlusCircle className="button-icon" />
-              {isSubmitting ? 'Submitting...' : 'Add to Marketplace'}
-            </button>
-          </div>
-        </form>
-        <MobileNavbar />  
+            <div className="button-container">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={isSubmitting ? "submit-button disabled" : "submit-button"}
+              >
+                <PlusCircle className="button-icon" />
+                {isSubmitting ? 'Submitting...' : 'Add to Marketplace'}
+              </button>
+            </div>
+          </form>
+        </div>
+        <MobileNavbar className="mobile-navbar" />  
       </div>
     </div>
   );

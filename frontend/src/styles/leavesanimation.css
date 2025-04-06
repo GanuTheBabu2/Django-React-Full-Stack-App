@@ -1,0 +1,43 @@
+#leaves {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .leaf {
+    position: absolute;
+    top: -40px;
+    background: radial-gradient(ellipse at center, #3a5f0b 0%, #1b4009 100%);
+    border-radius: 50% 50% 50% 50%;
+    opacity: 0.8;
+    animation: fall linear infinite, sway ease-in-out infinite;
+    animation-timing-function: ease-in-out;
+  }
+  
+  /* Falling animation */
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+  
+  /* Sway animation (horizontal left-right movement) */
+  @keyframes sway {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(30px); }
+    100% { transform: translateX(0); }
+  }
+  
+  .leaf {
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-direction: normal, alternate;
+    animation-duration: 8s, var(--sway-duration);
+  }

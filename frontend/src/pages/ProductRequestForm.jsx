@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import MobileNavbar from "../components/MobileNavbar.jsx";
-import api from "../api"; // Import your API utility
+import api from "../api";
 import '../styles/ProductRequestForm.css';
+import LeavesBackground from '../components/LeavesBackground.jsx';
 
 const ProductRequestForm = () => {
   const initialFormState = {
@@ -10,7 +11,7 @@ const ProductRequestForm = () => {
     description: '',
     category: '',
     condition: 'Good',
-    maxPrice: 0,
+    maxPrice: '',
     location: '',
     urgency: 'Medium'
   };
@@ -23,7 +24,7 @@ const ProductRequestForm = () => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: name === 'maxPrice' ? parseFloat(value) : value
+      [name]: name === 'maxPrice' ? parseFloat(value) || '' : value
     }));
   };
 
@@ -41,10 +42,11 @@ const ProductRequestForm = () => {
         location: formData.location,
         urgency: formData.urgency
       });
+
       console.log('Product Request Submitted:', response.data);
       setSubmitSuccess(true);
       setFormData(initialFormState);
-      setTimeout(() => setSubmitSuccess(false), 3000); // Clear success message after 3s
+      setTimeout(() => setSubmitSuccess(false), 3000);
     } catch (error) {
       console.error('Error submitting request:', error);
     } finally {
@@ -54,12 +56,13 @@ const ProductRequestForm = () => {
 
   return (
     <div className="product-request-form-container">
-      <h2 className="form-title">Create Product Request</h2>
-      {submitSuccess && (
-        <div className="success-message">Request submitted successfully!</div>
-      )}
-      <form onSubmit={handleSubmit} className="product-request-form-body">
-        <div className="form-fields">
+      <LeavesBackground/>
+
+      <div className="form-wrapper">
+        <h2 className="form-title">Create Product Request</h2>
+        {submitSuccess && <div className="success-message">🎉 Request submitted successfully!</div>}
+
+        <form onSubmit={handleSubmit} className="product-request-form-body">
           <div className="form-group">
             <label htmlFor="requestName">Product Name</label>
             <input
@@ -158,12 +161,13 @@ const ProductRequestForm = () => {
               <option value="High">High</option>
             </select>
           </div>
-        </div>
 
-        <button type="submit" className="submit-button" disabled={isSubmitting}>
-          <Send size={16} /> {isSubmitting ? 'Submitting...' : 'Submit Request'}
-        </button>
-      </form>
+          <button type="submit" className="submit-button" disabled={isSubmitting}>
+            <Send size={16} /> {isSubmitting ? 'Submitting...' : 'Submit Request'}
+          </button>
+        </form>
+      </div>
+
       <MobileNavbar />
     </div>
   );
