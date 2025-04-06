@@ -4,6 +4,16 @@ from .models import UserActivity, Requests, Listing
 from .models import UserProfile
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from .models import Review
+
+class ReviewSerializer(serializers.ModelSerializer):
+    reviewer = serializers.StringRelatedField(read_only=True)
+
+    class Meta:
+        model = Review
+        fields = ['id', 'reviewer', 'reviewed_user', 'rating', 'comment', 'created_at']
+
+
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)

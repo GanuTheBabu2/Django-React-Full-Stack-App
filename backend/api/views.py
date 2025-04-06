@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework import generics, views
-from .serializers import UserSerializer, UserActivitySerializer, RequestsSerializer, ListingSerializer , PublicUserSerializer
+from .serializers import UserSerializer, UserActivitySerializer, RequestsSerializer, ListingSerializer , PublicUserSerializer , ReviewSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import UserActivity, Requests, Listing
 from django.utils import timezone
@@ -12,6 +12,9 @@ from django.shortcuts import get_object_or_404
 import random
 from .serializers import  UserProfileSerializer
 from rest_framework.views import APIView
+from .models import Review
+from rest_framework import status
+
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -170,4 +173,42 @@ class ListingView(views.APIView):
     def get(self, request, pk):
         listing = get_object_or_404(Listing, pk=pk)
         serializer = ListingSerializer(listing)
+        return Response(serializer.data)
+    
+# Get reviews for a specific user
+class UserReviewsView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Review.objects.filter(reviewed_user_id=user_id)
+
+# Submit a review
+class SubmitReviewView(generics.CreateAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        data = request.data.copy()
+        reviewed_user_id = data.get("reviewed_user")
+
+        # Check for existing review
+        if Review.objects.filter(reviewer=request.user, reviewed_user_id=reviewed_user_id).exists():
+            return Response(
+                {"error": "You have already reviewed this user."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = ReviewSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save(reviewer=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Get current logged-in user
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
         return Response(serializer.data)

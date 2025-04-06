@@ -14,4 +14,7 @@ urlpatterns = [
     path("listings/view/<int:pk>/", views.ListingView.as_view(), name="listing-view"),
     path("listings/claim/<int:pk>/", views.claim_listing, name="claim-listing"),
     path("user/<int:user_id>/", views.public_user_profile, name="public-user-profile"),
+    path('user/<int:user_id>/reviews/', views.UserReviewsView.as_view(), name='user-reviews'),
+    path('user/review/', views.SubmitReviewView.as_view(), name='submit-review'),
+    path('current_user/', views.CurrentUserView.as_view(), name='current-user'),
 ]
